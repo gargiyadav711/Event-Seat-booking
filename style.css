@@ -175,7 +175,8 @@ body {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);/*Moves the popup back by half its own width and height, so its center aligns with the screen center.*/
+    transform: translate(-50%, -50%);
+    /*Moves the popup back by half its own width and height, so its center aligns with the screen center.*/
     width: 350px;
     padding: 35px;
     background: var(--white);
@@ -240,6 +241,7 @@ body {
         opacity: 0;
         transform: translate(-50%, -50%) scale(0.8);
     }
+
     to {
         opacity: 1;
         transform: translate(-50%, -50%) scale(1);
@@ -256,10 +258,10 @@ body {
 }
 
 .close-btn:hover {
-    color:var(--dark-purple);
+    color: var(--dark-purple);
 }
 
-.event-card{
+.event-card {
     width: 85%;
     margin: 50px auto;
     background: var(--cream);
@@ -289,7 +291,7 @@ body {
     box-shadow: 0 20px 50px rgba(81, 66, 81, 0.20);
 }
 
-.event-card > h2 {
+.event-card>h2 {
     text-align: center;
     font-size: 35px;
     color: var(--dark-purple);
@@ -297,7 +299,7 @@ body {
     margin-top: 10px;
 }
 
-.event-card > p {
+.event-card>p {
     text-align: center;
     font-size: 16px;
     color: #776676;
@@ -355,11 +357,13 @@ body {
     cursor: pointer;
     transition: 0.3s ease;
 }
+
 .event-info p i {
     color: var(--pink);
     margin-right: 8px;
     font-size: 16px;
 }
+
 .book-now {
     font-size: 15px;
     width: 130px;
@@ -377,4 +381,150 @@ body {
     background: var(--dark-purple);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(81, 66, 81, 0.2);
+}
+
+.seat-section {
+    width: 85%;
+    margin: 50px auto;
+    padding: 45px;
+    background: var(--cream);
+    border-radius: 28px;
+    box-shadow: 0 20px 50px rgba(81, 66, 81, 0.20);
+    text-align: center;
+}
+
+.seat-section h2 {
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--dark-purple);
+    margin-bottom: 10px;
+}
+
+.seat-container {
+    max-width: 650px;
+    margin: auto;
+}
+
+.screen {
+    width: 80%;
+    height: 45px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background: var(--dark-purple);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(81, 66, 81, 0.2);
+}
+
+.seat-layout {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: auto;
+}
+
+.seat {
+    width: 100%;
+    aspect-ratio: 1; /*used to explicitly define a predefined width to height ratio for an elemant*/
+    border-radius: 8px;
+    background: var(--cyan);
+    cursor: pointer;
+    transition: 0.2s ease;
+    display: inline-block;
+}
+
+.seat:hover {
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background: var(--pink);
+    box-shadow: 0 0 12px rgba(231, 125, 152, 0.5);
+}
+
+.seat.booked {
+    background: #aaa;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.seat.booked:hover {
+    transform: none;
+}
+
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 35px 0;
+}
+
+.seat-legend div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--dark-purple);
+}
+
+.seat-legend .seat {
+    width: 18px;
+    height: 18px;
+    cursor: default;
+}
+
+.seat-legend .seat:hover {
+    transform: none;
+}
+
+.booking-summary {
+    background: var(--light-lavender);
+    padding: 25px;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.booking-summary h3 {
+    color: var(--dark-purple);
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.booking-summary p {
+    color: #776676;
+    margin-bottom: 15px;
+    font-size: 15px;
+}
+
+.booking-summary span {
+    color: var(--dark-purple);
+    font-weight: bold;
+}
+
+.confirm-booking {
+    margin-top: 15px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 10px;
+    background: var(--pink);
+    color: var(--white);
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.confirm-booking:hover {
+    background: var(--dark-purple);
+    transform: translateY(-2px);
 }

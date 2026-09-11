@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="circle circle1"></div>
     <div class="circle circle2"></div>
     <div class="circle circle3"></div>
-    
+
     <div class="website">
         <nav class="navbar">
             <div class="logo">
@@ -23,7 +25,7 @@
                 <a href="#">About us</a>
                 <a href="#">Contact us</a>
             </div>
-            <div class="auth-buttons"  id="auth">
+            <div class="auth-buttons" id="auth">
                 <button class="signup" id="signupBtn">Sign up</button>
             </div>
             <div class="signup-popup" id="signupPopup">
@@ -78,6 +80,39 @@
             </div>
         </div>
     </div>
+    <section class="seat-section" id="seatSection">
+        <h2>Select Your Seats</h2>
+        <div class="seat-container">
+            <div class="screen">SCREEN</div>
+            <div class="seat-layout" id="seatLayout"></div>
+            <div class="seat-legend">
+                <div>
+                    <span class="seat available"></span>Available
+                </div>
+                <div>
+                    <span class="seat selected"></span>Selected
+                </div>
+                <div>
+                    <span class="seat booked"></span>Booked
+                </div>
+            </div>
+            <div class="booking-summary">
+                <h3>Booking Summary</h3>
+                <p>
+                    Selected Seats:
+                    <span id="selectedSeats">None</span>
+                </p>
+                <p>
+                    Total Price:
+                    ₹<span id="totalPrice">0</span>
+                </p>
+                <button class="confirm-booking" id="confirmBooking">
+                    Confirm Booking
+                </button>
+            </div>
+        </div>
+    </section>
     <script src="script.js"></script>
 </body>
+
 </html>
