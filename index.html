@@ -10,6 +10,7 @@
     <div class="circle circle1"></div>
     <div class="circle circle2"></div>
     <div class="circle circle3"></div>
+    
     <div class="website">
         <nav class="navbar">
             <div class="logo">
@@ -17,12 +18,22 @@
                 <span>Event Booking</span>
             </div>
             <div class="nav-links">
-                <a href="#">Overview</a>
+                <a href="#">My Bookings</a>
                 <a href="#">About us</a>
                 <a href="#">Contact us</a>
             </div>
-            <div class="auth-buttons">
-                <button class="signup">Sign up</button>
+            <div class="auth-buttons"  id="auth">
+                <button class="signup" id="signupBtn">Sign up</button>
+            </div>
+            <div class="signup-popup" id="signupPopup">
+                <span class="close-btn" onclick="closeSignup()">&times;</span>
+                <h2>Sign Up</h2>
+                <form id="signupForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="text" id="phone" placeholder="Phone Number" required>
+                    <button type="submit">Sign Up</button>
+                </form>
             </div>
         </nav>
         <section class="hero">
@@ -32,6 +43,11 @@
                     enjoy the event without any hassle.</p>
             </div>
         </section>
+    </div>
+    <div class="event-card">
+        <div class="event-list">
+            <div class="event_card1"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
