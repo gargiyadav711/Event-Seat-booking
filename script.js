@@ -73,10 +73,10 @@ const confirmBooking = document.getElementById("confirmBooking");
 const seatSection = document.getElementById("seatSection");
 const selectedEventName = document.getElementById("selectedEventName");
 const selectedEventDate = document.getElementById("selectedEventDate");
-const myBookingsContainer =document.getElementById("myBookingsContainer");
+const myBookingsContainer = document.getElementById("myBookingsContainer");
 let selectedSeats = [];
 let currentEvent = null;
-let bookings =JSON.parse(localStorage.getItem("myBookings")) || [];
+let bookings = JSON.parse(localStorage.getItem("myBookings")) || [];
 const seatPrices = {
     VIP: 500,
     Premium: 300,
@@ -143,7 +143,7 @@ function selectSeat(seat, seatNumber) {
             selectedSeats.splice(index, 1);
         }
     }
-    else{
+    else {
         seat.classList.remove("available");
         seat.classList.add("selected");
         selectedSeats.push(seatNumber);
@@ -157,7 +157,7 @@ function updateBookingSummary() {
         totalAmount += seatPrices[category];
     });
     if (selectedSeatsText) {
-        selectedSeatsText.textContent =selectedSeats.length > 0? selectedSeats.join(", "):"None";
+        selectedSeatsText.textContent = selectedSeats.length > 0 ? selectedSeats.join(", ") : "None";
     }
     if (totalPriceText) {
         totalPriceText.textContent = totalAmount;
@@ -224,68 +224,71 @@ if (confirmBooking) {
         };
         bookings.push(booking);
         localStorage.setItem("myBookings", JSON.stringify(bookings));
-        const updatedBookedSeats = [...bookedSeats,...selectedSeats];
-        localStorage.setItem(`bookedSeats_${currentEvent.id}`,JSON.stringify(updatedBookedSeats));
+        const updatedBookedSeats = [...bookedSeats, ...selectedSeats];
+        localStorage.setItem(`bookedSeats_${currentEvent.id}`, JSON.stringify(updatedBookedSeats));
         alert("Booking confirmed successfully!");
         loadSeatsForEvent(currentEvent.id);
         displayMyBookings();
     });
 }
 function displayMyBookings() {
-    if (!myBookingsContainer) {
-        return;
-    }
     myBookingsContainer.innerHTML = "";
+
     if (bookings.length === 0) {
         myBookingsContainer.innerHTML = `
-            <p class="no-bookings">
-                No bookings found.
-            </p>
+            <p class="no-bookings">No bookings found.</p>
         `;
         return;
     }
+
     bookings.forEach(booking => {
         const bookingCard = document.createElement("div");
         bookingCard.classList.add("booking-card");
-        bookingCard.innerHTML = `<div class="booking-info">
+
+        bookingCard.innerHTML = `
             <h3>${booking.eventName}</h3>
+
             <p>
                 <strong>Booking ID:</strong>
-                ${booking.bookingId}
+                <span>${booking.bookingId}</span>
             </p>
+
             <p>
                 <strong>Date:</strong>
-                ${booking.eventDate}
+                <span>${booking.eventDate}</span>
             </p>
+
             <p>
                 <strong>Seats:</strong>
-                ${booking.seats.join(", ")}
+                <span>${booking.seats.join(", ")}</span>
             </p>
+
             <p>
                 <strong>Total Amount:</strong>
-                ₹${booking.totalAmount}
-            </p></div>
-            <span class="booking-status ${booking.status.toLowerCase()}">
+                <span>₹${booking.totalAmount}</span>
+            </p>
+
+            <div class="booking-status">
                 ${booking.status}
-            </span>
-            ${
-                booking.status === "Confirmed"? `
+            </div>
+
+            ${booking.status === "Confirmed"
+                ? `
                         <button
-                            type="button"
                             class="cancel-booking"
                             data-booking-id="${booking.bookingId}">
                             Cancel Booking
-                        </button>`: `
-                        <p class="cancelled-message">
-                            This booking has been cancelled.
-                        </p>`
-            }`;
+                        </button>
+                    `
+                : ""
+            }
+        `;
         myBookingsContainer.appendChild(bookingCard);
     });
 }
 if (myBookingsContainer) {
     myBookingsContainer.addEventListener("click", function (event) {
-        const cancelButton =event.target.closest(".cancel-booking");
+        const cancelButton = event.target.closest(".cancel-booking");
         if (!cancelButton) {
             return;
         }
@@ -306,11 +309,10 @@ if (myBookingsContainer) {
         const remainingBookedSeats = bookedSeats.filter(seat => {
             return !booking.seats.includes(seat);
         });
-        localStorage.setItem(`bookedSeats_${booking.eventId}`,JSON.stringify(remainingBookedSeats));
+        localStorage.setItem(`bookedSeats_${booking.eventId}`, JSON.stringify(remainingBookedSeats));
         bookings.splice(bookingIndex, 1);
-        localStorage.setItem("myBookings",JSON.stringify(bookings));
-        if (currentEvent &&currentEvent.id === booking.eventId)
-        {
+        localStorage.setItem("myBookings", JSON.stringify(bookings));
+        if (currentEvent && currentEvent.id === booking.eventId) {
             loadSeatsForEvent(currentEvent.id);
         }
         displayMyBookings();
