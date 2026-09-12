@@ -41,9 +41,25 @@
         </nav>
         <section class="hero">
             <div class="hero-content">
-                <h1>Event seat Booking</h1>
+                <h1>Event seat <spam>Booking</spam></h1>
                 <p>Skip the line and lock in your experience before the venue fills up. Book your tickets online and
                     enjoy the event without any hassle.</p>
+            </div>
+            <div class="circle-section">
+                <div class="event-circle">
+                    <svg class="circle-text" id="circleText" viewBox="0 0 300 300" width="300" height="300">
+                        <defs>
+                            <path id="circlePath" d="M 150, 150 m -120, 0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0" fill="none" />
+                        </defs>
+                        <text id="circleTextContent" font-size="18" font-weight="bold" letter-spacing="2" fill="#342347">
+                            <textPath href="#circlePath" startOffset="0%" text-anchor="start">
+                            </textPath>
+                        </text>
+                    </svg>
+                    <div class="circle-image">
+                        <img id="circleImage" src="img2.jpeg" alt="Event">
+                    </div>
+                </div>
             </div>
         </section>
     </div>
