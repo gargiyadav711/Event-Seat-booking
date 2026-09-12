@@ -1,17 +1,17 @@
 const signupBtn = document.getElementById("signupBtn");
 const signupPopup = document.getElementById("signupPopup");
-
-signupBtn.addEventListener("click", () => {
-    signupPopup.classList.add("active");
-});
-
-function closeSignup() {
-    signupPopup.classList.remove("active");
+if (signupBtn && signupPopup) {
+    signupBtn.addEventListener("click", () => {
+        signupPopup.classList.add("active");
+    });
 }
-
+function closeSignup() {
+    if (signupPopup) {
+        signupPopup.classList.remove("active");
+    }
+}
 const circleText = document.getElementById("circleText");
 const circleImage = document.getElementById("circleImage");
-
 const slides = [
     {
         text: "DISCOVER AMAZING EVENTS",
@@ -29,6 +29,9 @@ const slides = [
 let currentSlide = 0;
 function typeText(text, callback) {
     const textPath = document.querySelector("#circleText textPath");
+    if (!textPath) {
+        return;
+    }
     textPath.textContent = "";
     let index = 0;
     const typing = setInterval(() => {
@@ -42,7 +45,7 @@ function typeText(text, callback) {
 }
 function showSlide() {
     if (!circleText || !circleImage) {
-        console.error("circleText or circleImage element not found");
+        console.error("Circle elements not found.");
         return;
     }
     const slide = slides[currentSlide];
@@ -58,7 +61,6 @@ function showSlide() {
         if (currentSlide >= slides.length) {
             currentSlide = 0;
         }
-
         showSlide();
     });
 }
@@ -71,14 +73,15 @@ const confirmBooking = document.getElementById("confirmBooking");
 const seatSection = document.getElementById("seatSection");
 const selectedEventName = document.getElementById("selectedEventName");
 const selectedEventDate = document.getElementById("selectedEventDate");
+const myBookingsContainer =document.getElementById("myBookingsContainer");
 let selectedSeats = [];
 let currentEvent = null;
+let bookings =JSON.parse(localStorage.getItem("myBookings")) || [];
 const seatPrices = {
     VIP: 500,
     Premium: 300,
     Regular: 150
 };
-
 const rows = ["A", "B", "C", "D", "E", "F"];
 function getSeatCategory(seatNumber) {
     const row = seatNumber.charAt(0);
@@ -91,9 +94,14 @@ function getSeatCategory(seatNumber) {
     return "Regular";
 }
 function getBookedSeats(eventId) {
-    return JSON.parse(localStorage.getItem(`bookedSeats_${eventId}`)) || [];
+    return JSON.parse(
+        localStorage.getItem(`bookedSeats_${eventId}`)
+    ) || [];
 }
 function loadSeatsForEvent(eventId) {
+    if (!seatLayout) {
+        return;
+    }
     seatLayout.innerHTML = "";
     selectedSeats = [];
     const bookedSeats = getBookedSeats(eventId);
@@ -112,12 +120,11 @@ function loadSeatsForEvent(eventId) {
             if (bookedSeats.includes(seatNumber)) {
                 seat.classList.add("booked");
                 seat.disabled = true;
-            }
-            else{
+            } else {
                 seat.classList.add("available");
             }
-            seat.addEventListener("click", function () {
-                selectSeat(seat,seatNumber);
+            seat.addEventListener("click", () => {
+                selectSeat(seat, seatNumber);
             });
             seatLayout.appendChild(seat);
         }
@@ -131,12 +138,12 @@ function selectSeat(seat, seatNumber) {
     if (seat.classList.contains("selected")) {
         seat.classList.remove("selected");
         seat.classList.add("available");
-        const index =selectedSeats.indexOf(seatNumber);
+        const index = selectedSeats.indexOf(seatNumber);
         if (index !== -1) {
             selectedSeats.splice(index, 1);
         }
     }
-    else {
+    else{
         seat.classList.remove("available");
         seat.classList.add("selected");
         selectedSeats.push(seatNumber);
@@ -146,44 +153,46 @@ function selectSeat(seat, seatNumber) {
 function updateBookingSummary() {
     let totalAmount = 0;
     selectedSeats.forEach(seatNumber => {
-        const category =getSeatCategory(seatNumber);
+        const category = getSeatCategory(seatNumber);
         totalAmount += seatPrices[category];
     });
-    if (selectedSeats.length > 0){
-        selectedSeatsText.textContent =selectedSeats.join(", ");
+    if (selectedSeatsText) {
+        selectedSeatsText.textContent =selectedSeats.length > 0? selectedSeats.join(", "):"None";
     }
-    else{
-        selectedSeatsText.textContent = "None";
+    if (totalPriceText) {
+        totalPriceText.textContent = totalAmount;
     }
-    totalPriceText.textContent = totalAmount;
 }
+
 document.querySelectorAll(".get-tickets").forEach(button => {
     button.addEventListener("click", function () {
-        const eventCard =this.closest(".event_card1");
+        const eventCard = this.closest(".event_card1");
+        if (!eventCard) {
+            return;
+        }
         currentEvent = {
             id: eventCard.dataset.eventId,
             name: eventCard.dataset.eventName,
             date: eventCard.dataset.eventDate
         };
         if (selectedEventName) {
-            selectedEventName.textContent =
-                currentEvent.name;
+            selectedEventName.textContent = currentEvent.name;
         }
         if (selectedEventDate) {
-            selectedEventDate.textContent =
-                currentEvent.date;
+            selectedEventDate.textContent = currentEvent.date;
         }
-        loadSeatsForEvent(
-            currentEvent.id
-        );
-        seatSection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+        loadSeatsForEvent(currentEvent.id);
+        if (seatSection) {
+            seatSection.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
     });
 });
-confirmBooking.addEventListener("click",
-    function (){
+
+if (confirmBooking) {
+    confirmBooking.addEventListener("click", function () {
         if (!currentEvent) {
             alert("Please select an event first.");
             return;
@@ -192,11 +201,121 @@ confirmBooking.addEventListener("click",
             alert("Please select at least one seat.");
             return;
         }
-        const bookedSeats =getBookedSeats(currentEvent.id);
+        const bookedSeats = getBookedSeats(currentEvent.id);
+        const alreadyBooked = selectedSeats.some(seat =>
+            bookedSeats.includes(seat)
+        );
+        if (alreadyBooked) {
+            alert("One or more selected seats are already booked.");
+            loadSeatsForEvent(currentEvent.id);
+            return;
+        }
+        const totalAmount = selectedSeats.reduce((total, seat) => {
+            return total + seatPrices[getSeatCategory(seat)];
+        }, 0);
+        const booking = {
+            bookingId: "BK" + Date.now(),
+            eventId: currentEvent.id,
+            eventName: currentEvent.name,
+            eventDate: currentEvent.date,
+            seats: [...selectedSeats],
+            totalAmount: totalAmount,
+            status: "Confirmed"
+        };
+        bookings.push(booking);
+        localStorage.setItem("myBookings", JSON.stringify(bookings));
         const updatedBookedSeats = [...bookedSeats,...selectedSeats];
         localStorage.setItem(`bookedSeats_${currentEvent.id}`,JSON.stringify(updatedBookedSeats));
-        alert(`Booking confirmed for ${currentEvent.name}!`);
+        alert("Booking confirmed successfully!");
         loadSeatsForEvent(currentEvent.id);
-        updateBookingSummary();
+        displayMyBookings();
+    });
+}
+function displayMyBookings() {
+    if (!myBookingsContainer) {
+        return;
     }
-);
+    myBookingsContainer.innerHTML = "";
+    if (bookings.length === 0) {
+        myBookingsContainer.innerHTML = `
+            <p class="no-bookings">
+                No bookings found.
+            </p>
+        `;
+        return;
+    }
+    bookings.forEach(booking => {
+        const bookingCard = document.createElement("div");
+        bookingCard.classList.add("booking-card");
+        bookingCard.innerHTML = `<div class="booking-info">
+            <h3>${booking.eventName}</h3>
+            <p>
+                <strong>Booking ID:</strong>
+                ${booking.bookingId}
+            </p>
+            <p>
+                <strong>Date:</strong>
+                ${booking.eventDate}
+            </p>
+            <p>
+                <strong>Seats:</strong>
+                ${booking.seats.join(", ")}
+            </p>
+            <p>
+                <strong>Total Amount:</strong>
+                ₹${booking.totalAmount}
+            </p></div>
+            <span class="booking-status ${booking.status.toLowerCase()}">
+                ${booking.status}
+            </span>
+            ${
+                booking.status === "Confirmed"? `
+                        <button
+                            type="button"
+                            class="cancel-booking"
+                            data-booking-id="${booking.bookingId}">
+                            Cancel Booking
+                        </button>`: `
+                        <p class="cancelled-message">
+                            This booking has been cancelled.
+                        </p>`
+            }`;
+        myBookingsContainer.appendChild(bookingCard);
+    });
+}
+if (myBookingsContainer) {
+    myBookingsContainer.addEventListener("click", function (event) {
+        const cancelButton =event.target.closest(".cancel-booking");
+        if (!cancelButton) {
+            return;
+        }
+        const bookingId = cancelButton.dataset.bookingId;
+        const bookingIndex = bookings.findIndex(booking => {
+            return booking.bookingId === bookingId;
+        });
+        if (bookingIndex === -1) {
+            alert("Booking not found.");
+            return;
+        }
+        const booking = bookings[bookingIndex];
+        const confirmCancel = confirm(`Do you want to cancel the booking for ${booking.eventName}?`);
+        if (!confirmCancel) {
+            return;
+        }
+        const bookedSeats = getBookedSeats(booking.eventId);
+        const remainingBookedSeats = bookedSeats.filter(seat => {
+            return !booking.seats.includes(seat);
+        });
+        localStorage.setItem(`bookedSeats_${booking.eventId}`,JSON.stringify(remainingBookedSeats));
+        bookings.splice(bookingIndex, 1);
+        localStorage.setItem("myBookings",JSON.stringify(bookings));
+        if (currentEvent &&currentEvent.id === booking.eventId)
+        {
+            loadSeatsForEvent(currentEvent.id);
+        }
+        displayMyBookings();
+        alert("Booking cancelled successfully. The seats are available again.");
+    });
+}
+
+displayMyBookings();

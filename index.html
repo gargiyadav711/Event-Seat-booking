@@ -70,7 +70,8 @@
         <h2>Upcoming Events</h2>
         <p>Choose your event and reserve your seat now</p>
         <div class="event-list">
-            <article class="event_card1">
+            <article class="event_card1" data-event-id="event1" data-event-name="Technology Conference"
+                data-event-date="September 20, 2026 - 7:00 PM">
                 <div class="event-date">
                     <span>SEPT</span>
                     <strong>20</strong>
@@ -89,7 +90,8 @@
                     <img src="tech.jpeg" alt="Tech">
                 </div>
             </article>
-            <article class="event_card1">
+            <article class="event_card1" data-event-id="event2" data-event-name="Music Festival"
+                data-event-date="October 15, 2026 - 10:00 PM">
                 <div class="event-date">
                     <span>OCT</span>
                     <strong>15</strong>
@@ -108,7 +110,8 @@
                     <img src="music.jpeg" alt="Music">
                 </div>
             </article>
-            <article class="event_card1">
+            <article class="event_card1" data-event-id="event3" data-event-name="Art Exhibition"
+                data-event-date="November 25, 2026 - 2:00 PM">
                 <div class="event-date">
                     <span>NOV</span>
                     <strong>25</strong>
@@ -168,6 +171,12 @@
                     Confirm Booking
                 </button>
             </div>
+        </div>
+    </section>
+    <section class="my-bookings-section" id="myBookingsSection">
+        <h2>My Bookings</h2>
+        <div id="myBookingsContainer">
+            <p class="no-bookings">No bookings found.</p>
         </div>
     </section>
     <script src="script.js"></script>
