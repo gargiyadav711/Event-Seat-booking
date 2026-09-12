@@ -58,6 +58,7 @@ function showSlide() {
         if (currentSlide >= slides.length) {
             currentSlide = 0;
         }
+
         showSlide();
     });
 }

@@ -41,7 +41,8 @@
         </nav>
         <section class="hero">
             <div class="hero-content">
-                <h1>Event seat <spam>Booking</spam></h1>
+                <h1>Event seat <spam>Booking</spam>
+                </h1>
                 <p>Skip the line and lock in your experience before the venue fills up. Book your tickets online and
                     enjoy the event without any hassle.</p>
             </div>
@@ -49,9 +50,11 @@
                 <div class="event-circle">
                     <svg class="circle-text" id="circleText" viewBox="0 0 300 300" width="300" height="300">
                         <defs>
-                            <path id="circlePath" d="M 150, 150 m -120, 0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0" fill="none" />
+                            <path id="circlePath" d="M 150, 150 m -120, 0 a 120,120 0 1,1 240,0 a 120,120 0 1,1 -240,0"
+                                fill="none" />
                         </defs>
-                        <text id="circleTextContent" font-size="18" font-weight="bold" letter-spacing="2" fill="#342347">
+                        <text id="circleTextContent" font-size="18" font-weight="bold" letter-spacing="2"
+                            fill="#342347">
                             <textPath href="#circlePath" startOffset="0%" text-anchor="start">
                             </textPath>
                         </text>
@@ -67,34 +70,65 @@
         <h2>Upcoming Events</h2>
         <p>Choose your event and reserve your seat now</p>
         <div class="event-list">
-            <div class="event_card1">
-                <div class="event-info">
-                    <h1>Technology Conference</h1>
-                    <p><i class="fa-solid fa-calendar"></i> 20 September 2026</p>
-                    <P><i class="fa-solid fa-map-marker"></i> Delhi, India</P>
-                    <p>Learn about the latest trends in technology</p>
-                    <button class="book-now">Book Now</button>
+            <article class="event_card1">
+                <div class="event-date">
+                    <span>SEPT</span>
+                    <strong>20</strong>
+                    <small>2026</small>
+                    <b>7:00 PM</b>
                 </div>
-            </div>
-            <div class="event_card1">
-                <div class="event-info">
-                    <h1>Music Festival</h1>
-                    <p><i class="fa-solid fa-calendar"></i> 15 October 2026</p>
-                    <P><i class="fa-solid fa-map-marker"></i> Mumbai, India</P>
-                    <p>Enjoy live performances by top artists</p>
-                    <button class="book-now">Book Now</button>
+                <div class="event-details">
+                    <h3>Technology Conference</h3>
+                    <p class="event-description"> Notion future - Learn about the latest trends in technology</p>
+                    <div class="event-action">
+                        <button class="get-tickets">Get Tickets</button>
+                        <button class="view-details">view details</button>
+                    </div>
                 </div>
-            </div>
-            <div class="event_card1">
-                <div class="event-info">
-                    <h1>Art Exhibition</h1>
-                    <p><i class="fa-solid fa-calendar"></i> 5 November 2026</p>
-                    <P><i class="fa-solid fa-map-marker"></i> Delhi, India</P>
-                    <p> Discover the works of renowned artists</p>
-                    <button class="book-now">Book Now</button>
+                <div class="event-image">
+                    <img src="tech.jpeg" alt="Tech">
                 </div>
-            </div>
+            </article>
+            <article class="event_card1">
+                <div class="event-date">
+                    <span>OCT</span>
+                    <strong>15</strong>
+                    <small>2026</small>
+                    <b>10:00 PM</b>
+                </div>
+                <div class="event-details">
+                    <h3>Music Festival</h3>
+                    <p class="event-description"> Shawn Mendes - Live Performance</p>
+                    <div class="event-action">
+                        <button class="get-tickets">Get Tickets</button>
+                        <button class="view-details">view details</button>
+                    </div>
+                </div>
+                <div class="event-image">
+                    <img src="music.jpeg" alt="Music">
+                </div>
+            </article>
+            <article class="event_card1">
+                <div class="event-date">
+                    <span>NOV</span>
+                    <strong>25</strong>
+                    <small>2026</small>
+                    <b>2:00 PM</b>
+                </div>
+                <div class="event-details">
+                    <h3>Art Exhibition</h3>
+                    <p class="event-description">Abhay Sehgal - spectacular display</p>
+                    <div class="event-action">
+                        <button class="get-tickets">Get Tickets</button>
+                        <button class="view-details">view details</button>
+                    </div>
+                </div>
+                <div class="event-image">
+                    <img src="art.jpeg" alt="Art">
+                </div>
+            </article>
         </div>
+    </div>
     </div>
     <section class="seat-section" id="seatSection">
         <h2>Select Your Seats</h2>
