@@ -376,7 +376,7 @@ body {
 
 .seat-layout {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     justify-content: center;
     align-items: center;
     gap: 12px;
@@ -386,12 +386,35 @@ body {
 .seat {
     width: 100%;
     aspect-ratio: 1;
-    /*used to explicitly define a predefined width to height ratio for an elemant*/
     border-radius: 8px;
     background: var(--cyan);
     cursor: pointer;
     transition: 0.2s ease;
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark-purple);
+    border: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.seat.vip {
+    border: 2px solid black;
+    background: #8B5A8C;
+    color: var(--white)
+}
+
+.seat.premium {
+    border: 2px solid black;
+    background: #B98EBA;
+    color: var(--dark-purple);
+}
+
+.seat.regular {
+    border: 2px solid black;
+    background: #DCC9DD;
+    color: var(--dark-purple);
 }
 
 .seat:hover {
@@ -411,6 +434,10 @@ body {
 
 .seat.booked:hover {
     transform: none;
+}
+
+.seat.booked:disabled {
+    pointer-events: none;
 }
 
 .seat-legend {

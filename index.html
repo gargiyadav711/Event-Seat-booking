@@ -133,6 +133,10 @@
     <section class="seat-section" id="seatSection">
         <h2>Select Your Seats</h2>
         <div class="seat-container">
+            <div class="selected-event-info" id="selectedEventInfo">
+                <h3 id="selectedEventName">Select an event</h3>
+                <p id="selectedEventDate"></p>
+            </div>
             <div class="screen">SCREEN</div>
             <div class="seat-layout" id="seatLayout"></div>
             <div class="seat-legend">
@@ -151,6 +155,10 @@
                 <p>
                     Selected Seats:
                     <span id="selectedSeats">None</span>
+                </p>
+                <p>
+                    Number of Seats:
+                    <span id="seatCount">0</span>
                 </p>
                 <p>
                     Total Price:
