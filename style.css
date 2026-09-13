@@ -244,6 +244,7 @@ body {
     border-radius: 20px;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
     z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .signup-popup.active {
@@ -835,4 +836,474 @@ body {
 .seat-cost span.seat.Strandard {
     background-color: #DCC9DD !important;
     border: 2px solid #B8A0BA !important;
+}
+.event-details-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(52, 35, 71, 0.65);
+    backdrop-filter: blur(5px);
+}
+
+.event-details-popup.active {
+    display: flex;
+    animation: detailsFadeIn 0.3s ease;
+}
+
+.event-details-box {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    width: 100%;
+    max-width: 780px;
+    overflow: hidden;
+    background: var(--cream);
+    border: 2px solid var(--dark-purple);
+    border-radius: 25px;
+    box-shadow: 0 25px 70px rgba(81, 66, 81, 0.35);
+    animation: detailsSlideUp 0.35s ease;
+}
+
+.details-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    z-index: 3;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--dark-purple);
+    font-size: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(81, 66, 81, 0.2);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.details-close:hover {
+    background: var(--pink);
+    color: var(--white);
+}
+
+#detailsImage {
+    width: 100%;
+    height: 100%;
+    min-height: 430px;
+    object-fit: cover;
+}
+
+.details-content {
+    padding: 45px 35px 35px;
+}
+
+.details-label {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 13px;
+    border-radius: 20px;
+    background: var(--light-lavender);
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.details-content h2 {
+    margin-bottom: 18px;
+    color: var(--dark-purple);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 32px;
+    line-height: 1.2;
+}
+
+#detailsDescription {
+    margin-bottom: 25px;
+    color: var(--purple);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.details-info {
+    margin-bottom: 25px;
+}
+
+.details-info p {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 15px 0;
+    color: var(--dark-purple);
+    font-size: 14px;
+}
+
+.details-info i {
+    width: 25px;
+    color: var(--pink);
+    font-size: 17px;
+}
+
+.details-book-btn {
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 10px;
+    background: var(--pink);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.details-book-btn:hover {
+    background: var(--dark-purple);
+    transform: translateY(-3px);
+}
+
+@keyframes detailsFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+@keyframes detailsSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* ====MOBILE RESPONSIVE DESIGN======= */
+@media (max-width: 700px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .website {
+        width: 94%;
+        height: auto;
+        min-height: auto;
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+
+    .navbar {
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .auth-buttons {
+        justify-content: center;
+    }
+
+    .hero {
+        flex-direction: column;
+        gap: 20px;
+        padding: 40px 20px;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding-bottom: 0;
+    }
+
+    .hero-content h1 {
+        font-size: 42px;
+        line-height: 1.1;
+    }
+
+    .hero-content p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .circle-section {
+        min-height: 330px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .event-circle {
+        width: 250px;
+        height: 250px;
+    }
+
+    .circle-text {
+        width: 250px;
+        height: 250px;
+    }
+
+    .circle-image {
+        width: 180px;
+        height: 180px;
+    }
+
+    .event-card {
+        width: 94%;
+        padding: 30px 18px;
+        margin: 30px auto;
+        border-radius: 20px;
+    }
+
+    .event-card > h2 {
+        font-size: 30px;
+    }
+
+    .event-card > p {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .event_card1 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        padding: 15px;
+        min-height: auto;
+    }
+
+    .event-date {
+        width: 100%;
+        min-height: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    .event-date span,
+    .event-date strong,
+    .event-date small,
+    .event-date b {
+        width: auto;
+        margin: 0;
+        padding: 10px 5px;
+    }
+
+    .event-date span {
+        font-size: 11px;
+    }
+
+    .event-date strong {
+        font-size: 26px;
+    }
+
+    .event-date small,
+    .event-date b {
+        font-size: 11px;
+    }
+
+    .event-details h3 {
+        font-size: 22px;
+    }
+
+    .event-description {
+        font-size: 14px;
+    }
+
+    .event-action {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .get-tickets {
+        padding: 12px 20px;
+    }
+
+    .event-image {
+        height: 190px;
+        width: 100%;
+    }
+
+    .event-image::after {
+        display: none;
+    }
+
+    .seat-section {
+        width: 94%;
+        padding: 30px 15px;
+        margin: 30px auto;
+        border-radius: 20px;
+    }
+
+    .seat-section h2 {
+        font-size: 30px;
+    }
+
+    .seat-container {
+        width: 100%;
+    }
+
+    .screen {
+        width: 100%;
+        margin: 15px auto 25px;
+        height: 40px;
+    }
+
+    .seat-layout {
+        grid-template-columns: repeat(6, 1fr);
+        gap: 7px;
+        width: 100%;
+    }
+
+    .seat {
+        border-radius: 5px;
+        font-size: 10px;
+    }
+
+    .seat-legend,
+    .seat-cost {
+        gap: 15px;
+        padding: 15px 10px;
+    }
+
+    .seat-legend div,
+    .seat-cost div {
+        font-size: 12px;
+    }
+
+    .seat-cost {
+        margin-top: 25px;
+    }
+
+    .booking-summary {
+        padding: 20px 15px;
+    }
+
+    .booking-summary h3 {
+        font-size: 22px;
+    }
+
+    .booking-summary p {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .confirm-booking {
+        width: 100%;
+    }
+
+    .my-bookings-section {
+        width: 94%;
+        padding: 30px 15px;
+        margin: 30px auto;
+        border-radius: 20px;
+    }
+
+    .my-bookings-section h2 {
+        font-size: 30px;
+    }
+
+    #myBookingsContainer {
+        width: 100%;
+    }
+
+    .booking-card {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        padding: 22px 18px;
+    }
+
+    .booking-card h3 {
+        font-size: 23px;
+    }
+
+    .booking-card p {
+        align-items: flex-start;
+        font-size: 13px;
+    }
+
+    .booking-card p span {
+        max-width: 60%;
+        overflow-wrap: anywhere;
+    }
+    .signup-popup {
+        width: calc(100% - 40px);
+        max-width: 350px;
+        padding: 30px 22px;
+    }
+    .event-details-popup {
+        padding: 15px;
+        overflow-y: auto;
+    }
+
+    .event-details-box {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 430px;
+        max-height: 90vh;
+        overflow-y: auto;
+        border-radius: 20px;
+    }
+
+    #detailsImage {
+        width: 100%;
+        height: 200px;
+        min-height: 200px;
+        object-fit: cover;
+    }
+
+    .details-content {
+        padding: 30px 22px 25px;
+    }
+
+    .details-content h2 {
+        font-size: 27px;
+    }
+
+    #detailsDescription {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .details-info p {
+        align-items: flex-start;
+        font-size: 13px;
+    }
+
+    .details-book-btn {
+        padding: 14px;
+    }
+
+    .details-close {
+        top: 10px;
+        right: 10px;
+    }
 }

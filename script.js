@@ -318,3 +318,66 @@ if (myBookingsContainer) {
 }
 
 displayMyBookings();
+
+const eventDetailsPopup = document.getElementById("eventDetailsPopup");
+const detailsClose = document.getElementById("detailsClose");
+const detailsImage = document.getElementById("detailsImage");
+const detailsTitle = document.getElementById("detailsTitle");
+const detailsDescription = document.getElementById("detailsDescription");
+const detailsDate = document.getElementById("detailsDate");
+const detailsLocation = document.getElementById("detailsLocation");
+const detailsPrice = document.getElementById("detailsPrice");
+const detailsBookBtn = document.getElementById("detailsBookBtn");
+const detailsVenue = document.getElementById("detailsVenue");
+let selectedDetailsEvent = null;
+document.querySelectorAll(".view-details").forEach(button => {
+    button.addEventListener("click", () => {
+        const eventCard = button.closest(".event_card1");
+        selectedDetailsEvent = {
+            id: eventCard.dataset.eventId,
+            name: eventCard.dataset.eventName,
+            date: eventCard.dataset.eventDate,
+            location: eventCard.dataset.eventLocation,
+            venue: eventCard.dataset.eventVenue,
+            description: eventCard.querySelector(".event-description").textContent.trim(),
+            image: eventCard.querySelector(".event-image img").src
+        };
+        detailsTitle.textContent = selectedDetailsEvent.name;
+        detailsDescription.textContent = selectedDetailsEvent.description;
+        detailsDate.textContent = selectedDetailsEvent.date;
+        detailsLocation.textContent = "Event venue";
+        detailsLocation.textContent = selectedDetailsEvent.location;
+        detailsVenue.textContent = selectedDetailsEvent.venue;
+        detailsPrice.textContent = "₹250 to 500 per seat";
+        detailsImage.src = selectedDetailsEvent.image;
+        eventDetailsPopup.classList.add("active");
+    });
+});
+
+detailsClose.addEventListener("click", () => {
+    eventDetailsPopup.classList.remove("active");
+});
+
+eventDetailsPopup.addEventListener("click", event => {
+    if (event.target === eventDetailsPopup) {
+        eventDetailsPopup.classList.remove("active");
+    }
+});
+
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        eventDetailsPopup.classList.remove("active");
+    }
+});
+
+detailsBookBtn.addEventListener("click", () => {
+    if (!selectedDetailsEvent) return;
+    const matchingEventCard = document.querySelector(
+        `[data-event-id="${selectedDetailsEvent.id}"]`
+    );
+    if (matchingEventCard) {
+        const ticketsButton = matchingEventCard.querySelector(".get-tickets");
+        eventDetailsPopup.classList.remove("active");
+        ticketsButton.click();
+    }
+});

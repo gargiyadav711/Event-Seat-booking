@@ -71,7 +71,8 @@
         <p>Choose your event and reserve your seat now</p>
         <div class="event-list">
             <article class="event_card1" data-event-id="event1" data-event-name="Technology Conference"
-                data-event-date="September 20, 2026 - 7:00 PM">
+                data-event-date="September 20, 2026 - 7:00 PM" data-event-location="Greater Noida"
+                data-event-venue="India Expo Centre">
                 <div class="event-date">
                     <span>SEPT</span>
                     <strong>20</strong>
@@ -91,7 +92,8 @@
                 </div>
             </article>
             <article class="event_card1" data-event-id="event2" data-event-name="Music Festival"
-                data-event-date="October 15, 2026 - 10:00 PM">
+                data-event-date="October 15, 2026 - 10:00 PM" data-event-location="Mumbai"
+                data-event-venue="Jio World Garden">
                 <div class="event-date">
                     <span>OCT</span>
                     <strong>15</strong>
@@ -111,7 +113,8 @@
                 </div>
             </article>
             <article class="event_card1" data-event-id="event3" data-event-name="Art Exhibition"
-                data-event-date="November 25, 2026 - 2:00 PM">
+                data-event-date="November 25, 2026 - 2:00 PM" data-event-location="Delhi"
+                data-event-venue="National Gallery of Modern Art">
                 <div class="event-date">
                     <span>NOV</span>
                     <strong>25</strong>
@@ -141,7 +144,7 @@
                 <p id="selectedEventDate"></p>
             </div>
             <div class="screen">SCREEN</div>
-            <div class="seat-layout" id="seatLayout"></div> 
+            <div class="seat-layout" id="seatLayout"></div>
             <div class="seat-legend">
                 <div>
                     <span class="seat selected"></span>Selected
@@ -155,7 +158,7 @@
                     <span class="seat VIP"></span>VIP
                 </div>
                 <div>
-                    <span class="seat Premiumselected"></span>Premium 
+                    <span class="seat Premiumselected"></span>Premium
                 </div>
                 <div>
                     <span class="seat Strandard"></span>Strandard
@@ -187,6 +190,35 @@
             <p class="no-bookings">No bookings found.</p>
         </div>
     </section>
+    <div class="event-details-popup" id="eventDetailsPopup">
+        <div class="event-details-box">
+            <button class="details-close" id="detailsClose">&times;</button>
+            <img id="detailsImage" src="" alt="Event image">
+            <div class="details-content">
+                <span class="details-label">EVENT DETAILS</span>
+                <h2 id="detailsTitle">Event Name</h2>
+                <p id="detailsDescription">Event description</p>
+                <div class="details-info">
+                    <p>
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <span id="detailsDate"></span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="detailsLocation"></span>
+                    </p>
+                    <p>
+                        <i class="fa-solid fa-building"></i>
+                        <span id="detailsVenue"></span>
+                    <p>
+                        <i class="fa-solid fa-ticket"></i>
+                        <span id="detailsPrice"></span>
+                    </p>
+                </div>
+                <button class="details-book-btn" id="detailsBookBtn">Get Tickets</button>
+            </div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 
