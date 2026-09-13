@@ -203,7 +203,6 @@ body {
     border: 2px solid var(--pink);
     border-radius: 50%;
     box-shadow: 0 0 25px rgba(231, 125, 152, 0.4);
-    animation: rotateCircle 20s linear infinite;
 }
 
 .circle-image {
@@ -230,16 +229,6 @@ body {
     height: 300px;
     z-index: 3;
     pointer-events: none;
-}
-
-@keyframes rotateCircle {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
 }
 
 .signup-popup {

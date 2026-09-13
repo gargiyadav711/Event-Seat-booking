@@ -126,7 +126,7 @@ function loadSeatsForEvent(eventId) {
             seat.addEventListener("click", () => {
                 selectSeat(seat, seatNumber);
             });
-            seatLayout.appendChild(seat);
+            seatLayout.append(seat);
         }
     });
     updateBookingSummary();
@@ -272,15 +272,12 @@ function displayMyBookings() {
                 ${booking.status}
             </div>
 
-            ${booking.status === "Confirmed"
-                ? `
+            ${booking.status === "Confirmed" ? `
                         <button
                             class="cancel-booking"
                             data-booking-id="${booking.bookingId}">
                             Cancel Booking
-                        </button>
-                    `
-                : ""
+                        </button>`: ""
             }
         `;
         myBookingsContainer.appendChild(bookingCard);
