@@ -159,20 +159,29 @@ body {
 }
 
 .hero-content h1 {
-    font-size: 70px;
+    font-size: 60px;
     color: #342347;
     margin-bottom: 20px;
 }
 
-.hero-content h1 spam {
+.hero-content h1 span {
     color: #F06292;
 }
 
 .hero-content p {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 1.7;
     color: rgb(42, 5, 42);
     margin-bottom: 30px;
+}
+
+.hero-content .more {
+    font-size: 14px;
+    color: var(--pink);
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 }
 
 .circle-section {
@@ -182,15 +191,16 @@ body {
     align-items: center;
     justify-content: center;
     padding: 20px;
-    padding-bottom: 45px;
+    padding-bottom: 90px;
     position: relative;
     z-index: 1;
+    margin-bottom: 20px;
 }
 
 .event-circle {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 325px;
+    height: 325px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -206,8 +216,8 @@ body {
 }
 
 .circle-image {
-    width: 220px;
-    height: 220px;
+    width: 240px;
+    height: 240px;
     border-radius: 50%;
     overflow: hidden;
     border: 5px solid var(--white);
@@ -700,7 +710,7 @@ body {
     max-width: 520px;
     min-height: 360px;
     padding: 28px;
-    background: linear-gradient(135deg,var(--light-lavender), #f3e8ef );
+    background: linear-gradient(135deg, var(--light-lavender), #f3e8ef);
     border: 2px solid #d6bfd1;
     border-radius: 20px;
     color: var(--dark-purple);
@@ -775,6 +785,7 @@ body {
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
 }
+
 .cancel-booking:hover {
     background: var(--pink);
     transform: translateY(-2px);
@@ -785,6 +796,7 @@ body {
     text-align: center;
     color: var(--purple);
 }
+
 .seat-cost {
     display: flex;
     justify-content: center;
@@ -837,6 +849,7 @@ body {
     background-color: #DCC9DD !important;
     border: 2px solid #B8A0BA !important;
 }
+
 .event-details-popup {
     display: none;
     position: fixed;
@@ -974,6 +987,7 @@ body {
         opacity: 1;
     }
 }
+
 @keyframes detailsSlideUp {
     from {
         opacity: 0;
@@ -1077,11 +1091,11 @@ body {
         border-radius: 20px;
     }
 
-    .event-card > h2 {
+    .event-card>h2 {
         font-size: 30px;
     }
 
-    .event-card > p {
+    .event-card>p {
         font-size: 14px;
         line-height: 1.5;
     }
@@ -1253,11 +1267,13 @@ body {
         max-width: 60%;
         overflow-wrap: anywhere;
     }
+
     .signup-popup {
         width: calc(100% - 40px);
         max-width: 350px;
         padding: 30px 22px;
     }
+
     .event-details-popup {
         padding: 15px;
         overflow-y: auto;
@@ -1305,5 +1321,74 @@ body {
     .details-close {
         top: 10px;
         right: 10px;
+    }
+}
+
+.circle-section {
+    position: relative;
+    width: 520px;
+    height: 520px;
+}
+.circle-message {
+    position: absolute;
+    width: 210px;
+    padding: 18px 22px;
+    background: var(--cream);
+    color: var(--dark-purple);
+    border: 2px solid var(--purple);
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(81, 66, 81, 0.18);
+    z-index: 10;
+}
+.circle-message p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+.circle-message-top {
+    top: 83px;
+    left: -80px;
+    animation: messageFloat 5s ease-in-out infinite;
+}
+
+.circle-message-bottom {
+    right: -41px;
+    bottom: 92px;
+    animation: messageFloat 5s ease-in-out infinite;
+}
+.circle-message-top::after {
+    content: "";
+    position: absolute;
+    right: 25px;
+    bottom: -12px;
+    width: 22px;
+    height: 22px;
+    background: var(--cream);
+    border-right: 2px solid var(--purple);
+    border-bottom: 2px solid var(--purple);
+    transform: rotate(45deg);
+}
+
+.circle-message-bottom::after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: -12px;
+    width: 22px;
+    height: 22px;
+    background: var(--cream);
+    border-left: 2px solid var(--purple);
+    border-top: 2px solid var(--purple);
+    transform: rotate(45deg);
+}
+@keyframes messageFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+    100% {
+        transform: translateY(0);
     }
 }
