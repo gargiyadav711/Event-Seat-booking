@@ -381,3 +381,22 @@ detailsBookBtn.addEventListener("click", () => {
         ticketsButton.click();
     }
 });
+
+const seatFilter = document.getElementById("seatFilter");
+if (seatFilter) {
+    seatFilter.addEventListener("change", function () {
+        const selectedCategory = this.value;
+        const seats = document.querySelectorAll("#seatLayout .seat");
+
+        seats.forEach(seat => {
+            if (
+                selectedCategory === "all" ||
+                seat.classList.contains(selectedCategory)
+            ) {
+                seat.style.display = "flex";
+            } else {
+                seat.style.display = "none";
+            }
+        });
+    });
+}
